@@ -1,15 +1,13 @@
 
 var Flattener = function(){
-	function compress(list){
+
+	this.flatten = function flatten(list){
 		return list.reduce(
 			function(beginning, next){
-				return beginning.concat(Array.isArray(next) ? compress(next) : next);
+				return beginning.concat(Array.isArray(next) ? flatten(next) : next);
 			},[]).filter(function(element){return element !== null; });
-	}
-
-	this.flatten = function(array){
-		return compress(array);
 	};
+
 };
 
 module.exports = Flattener;
