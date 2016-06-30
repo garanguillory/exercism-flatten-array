@@ -4,24 +4,12 @@ var Flattener = function(){
 		return list.reduce(
 			function(beginning, next){
 				return beginning.concat(Array.isArray(next) ? compress(next) : next);
-			},[]);
+			},[]).filter(function(element){return element !== null; });
 	}
 
 	this.flatten = function(array){
-		var result = compress(array);
-			return result.filter(function(element){
-				return element !== null;
-			});
+		return compress(array);
 	};
 };
 
 module.exports = Flattener;
-
-// if(array.some(function(element){return Array.isArray(element)}))
-
-// function compress(list){
-// 	list.reduce(
-// 				function(accum, curr){
-// 					return accum.concat(curr);
-// 				},[]);
-// }
